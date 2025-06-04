@@ -8,5 +8,12 @@ import { Component } from '@angular/core';
   styleUrl: './server-status.component.css',
 })
 export class ServerStatusComponent {
-  currentStatus = 'online';
+  currentStatus: string = 'online';
+  constructor() {
+    setInterval(() => {
+      const statuses = ['online', 'offline', 'unknown'];
+      const randomIndex = Math.floor(Math.random() * statuses.length);
+      this.currentStatus = statuses[randomIndex];
+    }, 5000);
+  }
 }
