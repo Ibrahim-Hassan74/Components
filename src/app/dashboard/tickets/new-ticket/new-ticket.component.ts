@@ -2,13 +2,17 @@ import {
   AfterViewInit,
   Component,
   ElementRef,
+  EventEmitter,
   OnInit,
+  output,
+  Output,
   viewChild,
   ViewChild,
 } from '@angular/core';
 import { ButtonComponent } from '../../../shared/button/button.component';
 import { ControlComponent } from '../../../shared/control/control.component';
 import { FormsModule } from '@angular/forms';
+import { Ticket } from '../ticket.model';
 
 @Component({
   selector: 'app-new-ticket',
@@ -19,6 +23,14 @@ import { FormsModule } from '@angular/forms';
 })
 export class NewTicketComponent implements OnInit, AfterViewInit {
   @ViewChild('form') form?: ElementRef<HTMLFormElement>;
+  // @Output() add = new EventEmitter<{
+  //   title: string;
+  //   ticketText: string;
+  // }>();
+  add = output<{
+    title: string;
+    text: string;
+  }>();
   // private form = viewChild.required<ElementRef<HTMLFormElement>>('form');
   ngOnInit(): void {
     console.log('OnInit');
@@ -29,7 +41,8 @@ export class NewTicketComponent implements OnInit, AfterViewInit {
     console.log(this.form?.nativeElement);
   }
   onSubmit(title: string, ticketText: string) {
-    console.log(title, ticketText);
+    // console.log(title, ticketText);
+    this.add.emit({ title: title, text: ticketText });
     this.form?.nativeElement.reset();
     // console.dir(this.form());
   }
