@@ -23,6 +23,7 @@ import { Ticket } from '../ticket.model';
 })
 export class NewTicketComponent implements OnInit, AfterViewInit {
   @ViewChild('form') form?: ElementRef<HTMLFormElement>;
+  @ViewChild('titleInput') input?: ElementRef<HTMLInputElement>;
   // @Output() add = new EventEmitter<{
   //   title: string;
   //   ticketText: string;
@@ -45,6 +46,8 @@ export class NewTicketComponent implements OnInit, AfterViewInit {
   onSubmit() {
     // console.log(title, ticketText);
     this.add.emit({ title: this.enteredTitle, text: this.enteredText });
+    // console.log(this.input?.nativeElement.value);
+
     this.enteredText = '';
     this.enteredTitle = '';
     // this.form?.nativeElement.reset();

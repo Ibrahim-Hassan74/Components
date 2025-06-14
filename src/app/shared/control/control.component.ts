@@ -51,5 +51,6 @@ export class ControlComponent implements AfterContentInit {
   }
   onClick() {
     console.log(this.control());
+    // console.log(this.el);
   }
 }
